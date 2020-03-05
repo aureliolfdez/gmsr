@@ -24,7 +24,7 @@ nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arc
 _./gMsr [biclustersFile] [matrixFile] [delta] [biclustersOutput] [deviceCount]_[outputFile]
 
 ```
-./BiBit /home/MyUser/Tests/bicDataset.csv /home/MyUser/Tests/geneMatrix.matrix 2000 100 2 /home/MyUser/Tests/output.csv
+./gMsr /home/MyUser/Tests/bicDataset.csv /home/MyUser/Tests/geneMatrix.matrix 2000 100 2 /home/MyUser/Tests/output.csv
 ```
 
 ## Authors
