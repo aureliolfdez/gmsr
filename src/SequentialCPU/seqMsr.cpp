@@ -22,6 +22,9 @@
 #include <map>
 #include <set>
 #include <math.h>
+#include <chrono>
+#include <sys/sysinfo.h>
+#include <limits.h>
 using namespace std;
 
 //introduceParameters()
@@ -39,7 +42,7 @@ double *mExpression;
 // Delta biclusters
 struct compMsr {
     bool operator() (const pair<ulong, double>& elem1, const pair<ulong, double>& elem2) const {
-    	return elem1.second < elem2.second;
+    	return elem1.first < elem2.first;
     }
 };
 set<pair<ulong, double>, compMsr> setMsr;
@@ -47,16 +50,16 @@ set<pair<ulong, double>, compMsr> setMsr;
 void introduceParameters() {
 
 	// PARAMETER 1: Biclusters file
-	biclustersFile = "/home/principalpc/G-MSR/Results/prueba.csv";
+	biclustersFile = "/home/principalpc/G-MSR/Biclusters/size/GDS4794-500000-50_50.csv";
 
 	// PARAMETER 2: Matrix file
-	matrixFile = "/home/principalpc/G-MSR/Matrix/yeast.matrix";
+	matrixFile = "/home/principalpc/G-MSR/Matrix/GDS4794.matrix";
 
 	//PARAMETER 3: OUTPUT
 	delta = 1000;
 
 	//PARAMETER 4: Output file
-	outputFile = "/home/principalpc/G-MSR/output.csv";
+	outputFile = "/home/principalpc/G-MSR/Output/seqmsr_v2/GDS4794-500000-50_50.csv";
 
 }
 
@@ -238,10 +241,10 @@ void runAlgorithm() {
 	// Ordered and filtered delta biclusters
 	for(ulong r=0; r < rowsmBiclusters; r++){
 		double fMsr = calculateMsr(r);
-		if(fMsr >= 0 && fMsr <= delta){
+		//if(fMsr >= 0 && fMsr <= delta){
 			pair<ulong, double> x = make_pair(r+1,fMsr);
 			setMsr.insert(x);
-		}
+		//}
 	}
 }
 
@@ -250,6 +253,9 @@ int main() {
 	introduceParameters();
 	readerMatrix();
 	biclustersReader();
+
+	// Record start time
+	auto start = std::chrono::high_resolution_clock::now();
 	runAlgorithm();
 
 	// Print DELTA BICLUSTERS
@@ -260,6 +266,12 @@ int main() {
 	cout << "Delta filter: " << delta << endl;
 	cout << "Results save in: " << outputFile << endl;
 	cout << endl << endl;
+
+	// Record end time
+	auto finish = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> elapsed = finish - start;
+	std::cout << "Elapsed time: " << elapsed.count() << " s\n";
+
 	saveFile();
 
 	return 0;
