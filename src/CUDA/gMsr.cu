@@ -152,25 +152,26 @@ __global__ void calculateMsr(ulong loopByThread, int idGpu, ulong min, double *g
 	}
 }
 
-void introduceParameters() {
+void introduceParameters(char **argv) {
 
 	// PARAMETER 1: Biclusters file
-	biclustersFile = "/home/principalpc/Tests/gMSR/Biclusters/Others/test1_bic.csv"; //BD-NumBicluster-MinRows_MinCols-Delta
+	biclustersFile = argv[1];
 
 	// PARAMETER 2: Matrix file
-	matrixFile = "/home/principalpc/Tests/gMSR/Matrix/Others/test1.matrix";
+	matrixFile = "/home/principalpc/Tests/gMSR/Matrix/GDS4794/GDS4794.matrix";
+	matrixFile = argv[2];
 
 	//PARAMETER 3: Delta biclusters
-	delta = 2000;
+	delta = atoi(argv[3]);
 
 	// PARAMETER 4: Output maximum biclusters
-	biclustersOutput = 100;
+	biclustersOutput = atoi(argv[4]);
 
 	//PARAMETER 5: GPus number
-	deviceCount = 1;
+	deviceCount = atoi(argv[5]);
 
 	//PARAMETER 6: Output file
-	outputFile = "/home/principalpc/Tests/gMSR/Output/Others/test1.csv"; //BD-NumBicluster-MinRows_MinCols-Delta-GPU
+	outputFile = argv[6];
 
 }
 
@@ -184,6 +185,7 @@ void fillBiclusters(ulong min, ulong biclustersPerChunkFill) {
 		*(mBiclusters + lBic * cColsmBiclusters + 1) = aCols[lBic+min].size();
 		for(ulong lRows = 0; lRows < aRows[lBic+min].size() ; lRows++){
 			*(mBiclusters + lBic * cColsmBiclusters + (2+lRows)) = (aRows[lBic+min])[lRows];
+
 		}
 		for(ulong lCols = 0; lCols < aCols[lBic+min].size() ; lCols++){
 			*(mBiclusters + lBic * cColsmBiclusters + (2+aRows[lBic+min].size()+lCols)) = (aCols[lBic+min])[lCols];
@@ -630,9 +632,9 @@ void runAlgorithm() {
 	}
 }
 
-int main() {
+int main(int argc, char** argv) {
 
-	introduceParameters();
+	introduceParameters(argv);
 	readerMatrix();
 	biclustersReader();
 
@@ -647,6 +649,7 @@ int main() {
 	cout << "Delta filter: " << delta << endl;
 	cout << "Results save in: " << outputFile << endl;
 	cout << endl << endl;
+
 	// Record end time
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;

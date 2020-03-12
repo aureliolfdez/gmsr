@@ -47,19 +47,19 @@ struct compMsr {
 };
 set<pair<ulong, double>, compMsr> setMsr;
 
-void introduceParameters() {
+void introduceParameters(char **argv) {
 
 	// PARAMETER 1: Biclusters file
-	biclustersFile = "/home/principalpc/G-MSR/Biclusters/size/GDS4794-500000-50_50.csv";
+	biclustersFile = argv[1];
 
 	// PARAMETER 2: Matrix file
-	matrixFile = "/home/principalpc/G-MSR/Matrix/GDS4794.matrix";
+	matrixFile = argv[2];
 
 	//PARAMETER 3: OUTPUT
-	delta = 1000;
+	delta = atoi(argv[3]);
 
 	//PARAMETER 4: Output file
-	outputFile = "/home/principalpc/G-MSR/Output/seqmsr_v2/GDS4794-500000-50_50.csv";
+	outputFile = argv[4];
 
 }
 
@@ -129,7 +129,7 @@ void biclustersReader() {
 			}
 		}
 	} else {
-		cout << "Unable to open file " << endl;
+		cout << "Unable to bicluster open file " << endl;
 	}
 }
 
@@ -176,7 +176,7 @@ void readerMatrix() {
 			}
 		}
 	} else {
-		cout << "Unable to open file " << endl;
+		cout << "Unable to matrix open file " << endl;
 	}
 }
 
@@ -241,16 +241,16 @@ void runAlgorithm() {
 	// Ordered and filtered delta biclusters
 	for(ulong r=0; r < rowsmBiclusters; r++){
 		double fMsr = calculateMsr(r);
-		//if(fMsr >= 0 && fMsr <= delta){
+		if(fMsr >= 0 && fMsr <= delta){
 			pair<ulong, double> x = make_pair(r+1,fMsr);
 			setMsr.insert(x);
-		//}
+		}
 	}
 }
 
-int main() {
+int main(int argc, char** argv) {
 
-	introduceParameters();
+	introduceParameters(argv);
 	readerMatrix();
 	biclustersReader();
 
