@@ -158,7 +158,6 @@ void introduceParameters(char **argv) {
 	biclustersFile = argv[1];
 
 	// PARAMETER 2: Matrix file
-	matrixFile = "/home/principalpc/Tests/gMSR/Matrix/GDS4794/GDS4794.matrix";
 	matrixFile = argv[2];
 
 	//PARAMETER 3: Delta biclusters
