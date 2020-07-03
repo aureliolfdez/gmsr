@@ -6,9 +6,9 @@ Working...
 ## Compilation
 Go to src/CUDA folder and executes the following commands to compile:
 ```
-nvcc -G -g -O0 -std=c++11 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/gMsr.d" "src/gMsr.cu"
-nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/gMsr.o" "src/gMsr.cu"
-nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -link -o "gMsr" ./src/gMsr.o
+nvcc -G -g -O0 -std=c++11 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/CUDA/gMsr.d" "src/CUDA/gMsr.cu"
+nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/CUDA/gMsr.o" "src/CUDA/gMsr.cu"
+nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -link -o "gMsr" ./src/CUDA/gMsr.o
 ```
 
 
