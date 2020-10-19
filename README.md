@@ -13,13 +13,13 @@ It is recommended to have installed at least:
 2. Go to src/CUDA folder.
 3. Replace compute_61 and sm_61 to your compute capability version and the host compiler according to your operating system in the following commands.
 
-Example of compilation on GNU/Linux with a CC version of 6.1:
+Example of a compilation on GNU/Linux with a CC version of 6.1:
 ```
 nvcc -G -g -O0 -std=c++11 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/CUDA/gMsr.d" "src/CUDA/gMsr.cu"
 nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/CUDA/gMsr.o" "src/CUDA/gMsr.cu"
 nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -link -o "gMsr" ./src/CUDA/gMsr.o
 ```
-
+Running the above commands will generate an executable called gMSR.
 
 ## Execution
 ### 1. Input parameters
