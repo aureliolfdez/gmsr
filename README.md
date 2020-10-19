@@ -11,7 +11,9 @@ It is recommended to have installed at least:
 ## Compilation
 1. Firstly, get the version of the compute capability (CC) of your NVIDIA graphics card: https://developer.nvidia.com/cuda-gpus
 2. Go to src/CUDA folder.
-3. Replace compute_61 and sm_61 to your compute capability version in the following commands:
+3. Replace compute_61 and sm_61 to your compute capability version and the host compiler according to your operating system in the following commands.
+
+Example of compilation on GNU/Linux with a CC version of 6.1:
 ```
 nvcc -G -g -O0 -std=c++11 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/CUDA/gMsr.d" "src/CUDA/gMsr.cu"
 nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/CUDA/gMsr.o" "src/CUDA/gMsr.cu"
