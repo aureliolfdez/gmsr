@@ -19,7 +19,7 @@ nvcc -G -g -O0 -std=c++11 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o
 nvcc -G -g -O0 -std=c++11 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/CUDA/gMsr.o" "src/CUDA/gMsr.cu"
 nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -link -o "gMsr" ./src/CUDA/gMsr.o
 ```
-Running the above commands will generate an executable called gMSR.
+Running the above commands generate an executable called gMSR.
 
 ## Execution
 ### 1. Input parameters
@@ -33,6 +33,13 @@ Running the above commands will generate an executable called gMSR.
 ### 2. Execute
 _./gMsr [biclustersFile] [matrixFile] [delta] [biclustersOutput] [deviceCount]_[outputFile]
 
+The following command is an execution example with the following properties:
+- The biclusters dataset is named bicDataset.csv
+- The gene expression matrix is called: geneMatrix.matrix.
+- It only takes into account those biclusters whose MSR value is less than 2000.
+- Build an ordered list with the 100 best biclusters according to their MSR.
+- This run will use two GPU devices in parallel.
+- The results will be stored in an output.csv file.
 ```
 ./gMsr /home/MyUser/Tests/bicDataset.csv /home/MyUser/Tests/geneMatrix.matrix 2000 100 2 /home/MyUser/Tests/output.csv
 ```
