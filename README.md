@@ -6,6 +6,7 @@ Biclustering is nowadays one of the most widely used Machine Learning techniques
 It is recommended to have installed at least:
 1. CUDA 11.0 Toolkit (11.0.171).
 2. NVIDIA Driver version: 450.36.06
+3. Host compile executable: gcc and g++ on Linux, clang and clang++ on Mac OS X or cl.exe on Windows.
 
 ## Compilation
 Go to src/CUDA folder and executes the following commands to compile:
