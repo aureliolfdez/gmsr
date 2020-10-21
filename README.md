@@ -43,6 +43,8 @@ The following command is an execution example with the following properties:
 ```
 ./gMsr /home/MyUser/Tests/bicDataset.csv /home/MyUser/Tests/geneMatrix.matrix 2000 100 2 /home/MyUser/Tests/output.csv
 ```
+## Output
+The gMSR output for this example is at: https://github.com/aureliolfdez/gmsr/blob/master/resources/output.csv
 
 ## Authors
 * [Aurelio Lopez-Fernandez](mailto:alopfer1@upo.es) - [DATAi Research Group (Pablo de Olavide University)](http://www.upo.es/investigacion/datai)
