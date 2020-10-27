@@ -1,5 +1,7 @@
 # gMSR: A multi-GPU algorithm to accelerate a massive validation of biclusters
+https://www.mdpi.com/2079-9292/9/11/1782
 
+## Abstract
 Biclustering is nowadays one of the most widely used machine learning techniques to discover local patterns in datasets from different areas such as energy consumption, marketing, social networks or bioinformatics, among them. Particularly in bioinformatics, Biclustering techniques have become extremely time-consuming, also being huge the number of results generated, due to the continuous increase in the size of the databases over the last few years. For this reason, validation techniques must be adapted to this new environment in order to help researchers focus their efforts on a specific subset of results in an efficient, fast and reliable way. The aforementioned situation may well be considered as Big Data context. In this sense, multiple machine learning techniques have been implemented by the application of GPU technology and CUDA architecture to accelerate the processing of large databases. However, as far as we know, this technology has not yet been applied to any bicluster validation technique. In this work, a multi-GPU version of one of the most used bicluster validation measure, MSR, is presented. It takes advantage of all the hardware and memory resources offered by GPU devices. Due to this, gMSR is able to validate a massive number of biclusters in any Biclustering-based study within a Big Data context.
 
 ## Requirements
